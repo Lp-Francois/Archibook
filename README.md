@@ -5,5 +5,5 @@ Social Network using LDAP and synchronisation for schools
 
 |     Verbe HTTP          |Endpoint |Action
 -------------|--------------------|------------------------         
-|POST|    /users   |Enregistre/modifie les utilisateurs   |
-|POST| /users?roles=teacher&name=jdoe |   Enregistre/modifie un utilisateur Professeur d'identifiant jdoe |
+|POST|    /users   |Save or modify users   |
+|POST| /users?role=teacher&name=jdoe |   Save or modify teacher users named jdoe |
