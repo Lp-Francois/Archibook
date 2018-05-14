@@ -5,11 +5,10 @@ Social Network using LDAP and synchronisation for schools
 
 |     Verbe HTTP          |Endpoint |Action
 -------------|--------------------|------------------------         
-|POST|    /users   |Save or modify users   |
-|POST| /users?role=teacher&name=jdoe |   Save or modify teacher users named jdoe |
+|POST|    /school   |Precise the school   |
 
 ## Test
 
 ```
-curl -X POST -H "Accept: application/json" -d 'json={"name"="Francois"}' http://88.177.205.85
+curl -X POST -H "Accept: application/json" -d '{"name"="Francois"}' http://website/api.php/school
 ```
