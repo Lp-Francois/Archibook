@@ -5,7 +5,7 @@ Social Network using LDAP and synchronisation for schools
 
 |     Verbe HTTP          |Endpoint |Action
 -------------|--------------------|------------------------         
-|POST|    /school   |Precise the school   |
+|POST|    /school   |Add a new school in DB with the json as datas   |
 
 ## Test
 
