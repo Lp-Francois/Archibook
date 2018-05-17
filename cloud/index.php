@@ -18,7 +18,7 @@
     <section>
 		
 		<h2>Se connecter</h2>
-		<form action="/archibook/" method="post">
+		<form action="/archibook/cloud" method="post">
 		  Name:<br>
 		  <input type="text" name="name" value="">
 		  <br>
