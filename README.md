@@ -7,6 +7,11 @@ Social Network using LDAP and synchronisation for schools
 -------------|--------------------|------------------------         
 |POST|    /school   |Add a new school in DB with the json as datas   |
 
+## Database Structure
+
+- users with the users
+- school_keys with each school_key. Cyphering with the salt : "archibook", and hashing with sha256
+
 ## Test
 
 ```
