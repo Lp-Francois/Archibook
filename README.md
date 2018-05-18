@@ -5,7 +5,9 @@ Social Network using LDAP and synchronisation for schools
 
 |     Verbe HTTP          |Endpoint |Action
 -------------|--------------------|------------------------         
-|POST|    /school   |Add a new school in DB with the json as datas   |
+|POST|    /API_key   |Confirm that you are a registered school. |
+
+*Contact ours folks to obtain an API key.*
 
 ## Database Structure
 
