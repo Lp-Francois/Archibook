@@ -1,20 +1,15 @@
 <?php
 
 //$url = 'http://localhost/archibook/api.php/isep';
-$url = 'http://localhost/archibook/api.php';
+$url = 'http://localhost/archibook/cloud/api.php/e34a2154179b291826b06d2c80db04b38899ac4208c564ab7cf6d481ad1585eb';
 
 $data = 
 [
 	1 => 
 	[
-		'name' => 'John',
+		'name' => 'John4',
 		'password' => 'ahjdazdkjaznda'
-	],
-	2 => 
-	[
-		'name' => 'JB2',
-		'password' => 'azerty2'
-	],
+	]
 ];
 
 $ch = curl_init( $url );
