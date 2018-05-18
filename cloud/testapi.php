@@ -7,8 +7,8 @@ $data =
 [
 	1 => 
 	[
-		'name' => 'John4',
-		'password' => 'ahjdazdkjaznda'
+		'name' => 'admin1',
+		'password' => 'admin'
 	]
 ];
 

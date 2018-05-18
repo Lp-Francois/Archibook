@@ -25,10 +25,13 @@ foreach ($input as $user) {
 	echo $user['name']."\r\n";
 	echo $user['password']."\r\n";
 
+	$name = $user['name'];
+	$password = hash('sha256', $user['password']);
+
 	$req = $db->prepare('INSERT INTO users(name, password) VALUES(:name, :password)');
 	$req->execute(array(
-	'name' => $user['name'],
-	'password' => $user['password'],
+	'name' => $name,
+	'password' => $password,
 	));
 }
 
