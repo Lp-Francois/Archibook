@@ -12,6 +12,8 @@ $req_keys = $db->prepare('SELECT *
 		        $data=$req_keys->fetch();
 			if ($data['school_key']) {
 				// it is ok
+
+				$school_id = $data['ID'];
 			}else {
 				die();
 			}
@@ -24,14 +26,26 @@ include('bdd.php');
 foreach ($input as $user) {
 	echo $user['name']."\r\n";
 	echo $user['password']."\r\n";
+	echo $user['mail']."\r\n";
+	echo $school_id."\r\n";
 
 	$name = $user['name'];
+	$mail = $user['mail'];
 	$password = hash('sha256', $user['password']);
+/*
+	$query=$db->prepare('SELECT mail
+		        FROM users WHERE school_id = :school_id');
+		        $query->bindValue(':school_id',$school_id, PDO::PARAM_STR);
+		        $query->execute();
+		        $data=$query->fetch();
+*/
 
-	$req = $db->prepare('INSERT INTO users(name, password) VALUES(:name, :password)');
+	$req = $db->prepare('INSERT INTO users(name, password, mail, school_id) VALUES(:name, :password, :mail, :school_id)');
 	$req->execute(array(
 	'name' => $name,
 	'password' => $password,
+	'mail' => $mail,
+	'school_id' => $school_id,
 	));
 }
 
