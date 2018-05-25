@@ -18,9 +18,9 @@
     <section>
 		
 		<h2>Se connecter</h2>
-		<form action="/archibook/cloud/" method="post">
-		  Name:<br>
-		  <input type="text" name="name" value="">
+		<form action="/archibook/cloud/check.php" method="post">
+		  mail:<br>
+		  <input type="text" name="mail" value="">
 		  <br>
 		  Password:<br>
 		  <input type="password" name="password" value="">
@@ -30,45 +30,7 @@
     </section>
 
     <div>
-		    <?php
-		
-			include("bdd.php");
-
-
-		    $message='';
-		    if (empty($_POST['name']) || empty($_POST['password']) ) //Oublie d'un champ
-		    {
-		        $message = '<p>une erreur s\'est produite pendant votre identification.
-				Vous devez remplir tous les champs</p>';
-		    }
-		    else
-		    {
-
-		        $query=$db->prepare('SELECT name, password
-		        FROM users WHERE name = :name');
-		        $query->bindValue(':name',$_POST['name'], PDO::PARAM_STR);
-		        $query->execute();
-		        $data=$query->fetch();
-		        
-				if ($data['password'] == hash('sha256', $_POST['password']))
-				{
-					echo 'it works';
-
-				    $message = '<p>Bienvenue '.$data['name'].', 
-						vous êtes maintenant connecté!</p>';  
-				}
-				else
-				{
-				    $message = '<p>Une erreur s\'est produite 
-				    pendant votre identification.<br /> Le mot de passe ou le pseudo 
-			            entré n\'est pas correcte.';
-				}
-		    	$query->CloseCursor();
-		    }
-		    echo $message;
-
-	
-		?>
+		   
     </div>
   </body>
 </html>
