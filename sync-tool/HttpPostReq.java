@@ -8,10 +8,12 @@ public class HttpPostReq {
 
     public static void main(String[] args) {
 
+        String url = "66.666.6.666";
+
         HttpClient httpClient = HttpClientBuilder.create().build(); //Use this instead
 
         try {
-            HttpPost request = new HttpPost("http://88.177.205.85/archibook/cloud/api.php/e34a2154179b291826b06d2c80db04b38899ac4208c564ab7cf6d481ad1585eb");
+            HttpPost request = new HttpPost("http://"+url+"/archibook/cloud/api.php/e34a2154179b291826b06d2c80db04b38899ac4208c564ab7cf6d481ad1585eb");
             StringEntity params =new StringEntity("{\"1\":{\"name\":\"test389\",\"password\":\"5123\",\"mail\":\"ahb@hgvgh\"}}");
 
             request.addHeader("content-type", "application/json");
