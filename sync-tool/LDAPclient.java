@@ -11,8 +11,8 @@ public class LDAPclient {
 
         LDAPConnection connection = new LDAPConnection("localhost.localdomain", 1389, "cn=Directory Manager","password");
 
-        Filter filter = Filter.create("(objectClass=*)");
-        SearchRequest searchRequest = new SearchRequest("ou=Professors,ou=People,dc=isep,dc=fr", SearchScope.SUB, filter,"mail","telephoneNumber","cn");
+        Filter filter = Filter.create("objectClass=person");
+        SearchRequest searchRequest = new SearchRequest("dc=isep,dc=fr", SearchScope.SUB,filter,"cn","mail","telephoneNumber","userpassword");
         SearchResult searchResult;
         try
         {
@@ -23,7 +23,8 @@ public class LDAPclient {
                 String name = entry.getAttributeValue ("cn");
                 String mail = entry.getAttributeValue("mail");
                 String phone = entry.getAttributeValue("telephoneNumber");
-                System.out.println(name + "\n" + mail + "\n" + phone);
+                String mdp = entry.getAttributeValue("userpassword");
+                System.out.println(name + "\n" + mail + "\n" + phone + "\n" + mdp);
             }
 
         }
@@ -40,4 +41,5 @@ public class LDAPclient {
 
 
 }
+
 
