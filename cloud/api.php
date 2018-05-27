@@ -24,11 +24,12 @@ $input = json_decode(file_get_contents('php://input'),true);
 include('bdd.php');
 
 foreach ($input as $user) {
+	/*
 	echo $user['name']."\r\n";
 	echo $user['password']."\r\n";
 	echo $user['mail']."\r\n";
 	echo $school_id."\r\n";
-
+	*/
 	$name = $user['name'];
 	$mail = $user['mail'];
 	$password = hash('sha256', $user['password']);
