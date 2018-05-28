@@ -41,3 +41,9 @@ Exemple of json datas :
 	},
 }
 ```
+
+## TODO
+
+* HTTPS
+* Gérer les différents hashs
+* Gérer le mot de passe du client (dé hashage ?)
