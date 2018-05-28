@@ -1,3 +1,5 @@
+package archibook;
+
 import com.unboundid.ldap.sdk.*;
 
 public class LDAPclient {
@@ -18,7 +20,7 @@ public class LDAPclient {
         //System.out.println("[+] Constructeur");
     }
 
-    public void startConnection() throws LDAPException {
+    public String startConnection() throws LDAPException {
 
         //System.out.println("[+] startConnection init");
 
@@ -35,15 +37,31 @@ public class LDAPclient {
             searchResult = connection.search(searchRequest);
 
             System.out.println("[+] Successfull connection");
+            
+             int i = 1;
+             String JSONString = new String();
+             JSONString += "{";
+                
             for (SearchResultEntry entry : searchResult.getSearchEntries())
             {
                 //System.out.println("[+] in the for");
                 String name = entry.getAttributeValue ("cn");
                 String mail = entry.getAttributeValue("mail");
-                String phone = entry.getAttributeValue("telephoneNumber");
+                //String phone = entry.getAttributeValue("telephoneNumber");
                 String mdp = entry.getAttributeValue("userpassword");
-                System.out.println(name + "\n" + mail + "\n" + phone + "\n" + mdp);
+                System.out.println(name + "\n" + mail + "\n" + mdp);
+                
+                JSONString += "\"" + i + "\":{";
+                JSONString = JSONString + "\"name\":\"" + name + "\",\"password\":\"" + mdp + "\",\"mail\":\"" + mail + "\"},";
+                i++;
+        
+                
             }
+            
+            JSONString = JSONString.substring(0,JSONString.length()-1);
+            JSONString += "}";
+            System.out.println(JSONString);
+            return JSONString;
 
         }
         catch (LDAPSearchException lse)
@@ -53,8 +71,10 @@ public class LDAPclient {
             searchResult = lse.getSearchResult();
             ResultCode resultCode = lse.getResultCode();
             String errorMessageFromServer = lse.getDiagnosticMessage();
-
+            return errorMessageFromServer;
         }
+        
+        
 
     }
 

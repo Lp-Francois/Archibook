@@ -1,4 +1,4 @@
-
+package archibook;
 
 import com.unboundid.ldap.sdk.LDAPException;
 import java.util.logging.Level;
@@ -37,41 +37,48 @@ public class Main extends Application {
         grid.setPadding(new Insets(10,10,10,1));
         grid.setVgap(8);
         grid.setHgap(8);
+        
+        //APIkey
+        Label apiLabel = new Label("API key");
+        GridPane.setConstraints(apiLabel, 0, 0);
+
+        TextField apiInput = new TextField("");
+        GridPane.setConstraints(apiInput, 1, 0);
 
         //url
         Label urlLabel = new Label("Server address - URL");
-        GridPane.setConstraints(urlLabel, 0, 0);
+        GridPane.setConstraints(urlLabel, 0, 1);
 
         TextField urlInput = new TextField("localhost.localdomain");
-        GridPane.setConstraints(urlInput, 1, 0);
+        GridPane.setConstraints(urlInput, 1, 1);
 
         //port
         Label portLabel = new Label("Port");
-        GridPane.setConstraints(portLabel, 0, 1);
+        GridPane.setConstraints(portLabel, 0, 2);
 
         TextField portInput = new TextField("1389");
-        GridPane.setConstraints(portInput, 1, 1);
+        GridPane.setConstraints(portInput, 1, 2);
 
         //dn
         Label loginLabel = new Label("domain name");
-        GridPane.setConstraints(loginLabel, 0, 2);
+        GridPane.setConstraints(loginLabel, 0, 3);
 
         TextField loginInput = new TextField("cn=Directory Manager");
-        GridPane.setConstraints(loginInput, 1, 2);
+        GridPane.setConstraints(loginInput, 1, 3);
 
         //password
         Label passwordLabel = new Label("Password");
-        GridPane.setConstraints(passwordLabel, 0, 3);
+        GridPane.setConstraints(passwordLabel, 0, 4);
 
         TextField passwordInput = new TextField();
-        GridPane.setConstraints(passwordInput, 1, 3);
+        GridPane.setConstraints(passwordInput, 1, 4);
 
         //domain component dnCo
         Label dcLabel = new Label("root ldap");
-        GridPane.setConstraints(dcLabel, 0, 4);
+        GridPane.setConstraints(dcLabel, 0, 5);
 
         TextField dcInput = new TextField("dc=isep,dc=fr");
-        GridPane.setConstraints(dcInput, 1, 4);
+        GridPane.setConstraints(dcInput, 1, 5);
 
         //button
         Button sendButton = new Button("Sync");
@@ -79,14 +86,15 @@ public class Main extends Application {
             try {
                 String text = portInput.getText();
                 int portInt = Integer.parseInt(text);
-                connect(urlInput.getText(), portInt, loginInput.getText(),passwordInput.getText(), dcInput.getText());
+                connect(apiInput.getText(), urlInput.getText(), portInt, loginInput.getText(),passwordInput.getText(), dcInput.getText());
             } catch (LDAPException ex) {
                 Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
-        GridPane.setConstraints(sendButton, 1, 5);
+        
+        GridPane.setConstraints(sendButton, 1, 6);
 
-        grid.getChildren().addAll(urlLabel, urlInput, portLabel, portInput, loginLabel, loginInput, passwordLabel, passwordInput, dcLabel, dcInput, sendButton);
+        grid.getChildren().addAll(apiLabel, apiInput, urlLabel, urlInput, portLabel, portInput, loginLabel, loginInput, passwordLabel, passwordInput, dcLabel, dcInput, sendButton);
         Scene scene = new Scene(grid, 400,300);
 
         window.setScene(scene);
@@ -94,12 +102,16 @@ public class Main extends Application {
         window.show();
     }
 
-    private void connect(String url, Integer port, String login, String password, String dc) throws LDAPException{
+    private void connect(String apiKey, String url, Integer port, String login, String password, String dc) throws LDAPException{
         //"localhost.localdomain", 1389, "cn=Directory Manager","password"
         //"dc=isep,dc=fr"
 
         LDAPclient ldapCo = new LDAPclient(url, port, login, password, dc);
-        ldapCo.startConnection();
+        String JSONString = ldapCo.startConnection();
+        HttpPostReq post = new HttpPostReq(JSONString,apiKey);
+        post.send();
+        
+        
 
         /*
         System.out.println(url);
