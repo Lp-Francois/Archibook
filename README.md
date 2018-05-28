@@ -14,6 +14,12 @@ Social Network using LDAP and synchronisation for schools
 - users with the users
 - school_keys with each school_key. Cyphering with the salt : "archibook", and hashing with sha256
 
+## Installation sync-tool
+
+Add all the librairies to the java project.
+* With the *httpcomponents-client-4.5.5-bin*, you have to get all the jar files in the lib folder.
+* With Maven, get the org.eclipse.ecf:org.apache.httpcomponents.httpclient{version}
+
 ## Test
 
 ```
