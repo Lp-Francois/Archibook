@@ -1,3 +1,8 @@
+package archibook;
+
+import com.unboundid.ldap.sdk.LDAPException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -9,9 +14,6 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.scene.layout.GridPane;
-
-
-
 
 public class Main extends Application {
 
@@ -36,41 +38,75 @@ public class Main extends Application {
         grid.setVgap(8);
         grid.setHgap(8);
 
-        Label urlLabel = new Label("Server address");
+        //url
+        Label urlLabel = new Label("Server address - URL");
         GridPane.setConstraints(urlLabel, 0, 0);
 
-        TextField urlInput = new TextField("ldap://my.ldap.server:1389");
+        TextField urlInput = new TextField("localhost.localdomain");
         GridPane.setConstraints(urlInput, 1, 0);
 
-        Label loginLabel = new Label("DN of Directory Manager");
-        GridPane.setConstraints(loginLabel, 0, 1);
+        //port
+        Label portLabel = new Label("Port");
+        GridPane.setConstraints(portLabel, 0, 1);
 
-        TextField loginInput = new TextField();
-        GridPane.setConstraints(loginInput, 1, 1);
+        TextField portInput = new TextField("1389");
+        GridPane.setConstraints(portInput, 1, 1);
 
+        //dn
+        Label loginLabel = new Label("domain name");
+        GridPane.setConstraints(loginLabel, 0, 2);
 
+        TextField loginInput = new TextField("cn=Directory Manager");
+        GridPane.setConstraints(loginInput, 1, 2);
+
+        //password
         Label passwordLabel = new Label("Password");
-        GridPane.setConstraints(passwordLabel, 0, 2);
+        GridPane.setConstraints(passwordLabel, 0, 3);
 
         TextField passwordInput = new TextField();
-        GridPane.setConstraints(passwordInput, 1, 2);
+        GridPane.setConstraints(passwordInput, 1, 3);
 
+        //domain component dnCo
+        Label dcLabel = new Label("root ldap");
+        GridPane.setConstraints(dcLabel, 0, 4);
 
+        TextField dcInput = new TextField("dc=isep,dc=fr");
+        GridPane.setConstraints(dcInput, 1, 4);
+
+        //button
         Button sendButton = new Button("Sync");
-        sendButton.setOnAction(e -> connect(urlInput.getText(),loginInput.getText(),passwordInput.getText()));
-        GridPane.setConstraints(sendButton, 1, 3);
+        sendButton.setOnAction(e -> {
+            try {
+                String text = portInput.getText();
+                int portInt = Integer.parseInt(text);
+                connect(urlInput.getText(), portInt, loginInput.getText(),passwordInput.getText(), dcInput.getText());
+            } catch (LDAPException ex) {
+                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+        GridPane.setConstraints(sendButton, 1, 5);
 
-        grid.getChildren().addAll(urlLabel, urlInput, loginLabel, loginInput, passwordLabel, passwordInput, sendButton);
-        Scene scene = new Scene(grid, 350,200);
+        grid.getChildren().addAll(urlLabel, urlInput, portLabel, portInput, loginLabel, loginInput, passwordLabel, passwordInput, dcLabel, dcInput, sendButton);
+        Scene scene = new Scene(grid, 400,300);
 
         window.setScene(scene);
 
         window.show();
     }
 
-    private void connect(String url, String login, String password){
+    private void connect(String url, Integer port, String login, String password, String dc) throws LDAPException{
+        //"localhost.localdomain", 1389, "cn=Directory Manager","password"
+        //"dc=isep,dc=fr"
+
+        Archibook ldapCo = new archibook.LDAPclient(url, port, login, password, dc);
+        ldapCo.startConnection();
+
+        /*
         System.out.println(url);
+        System.out.println(port);
         System.out.println(login);
         System.out.println(password);
+        System.out.println(dc);
+        */
     }
 }
