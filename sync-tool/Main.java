@@ -1,4 +1,4 @@
-package archibook;
+
 
 import com.unboundid.ldap.sdk.LDAPException;
 import java.util.logging.Level;
@@ -98,7 +98,7 @@ public class Main extends Application {
         //"localhost.localdomain", 1389, "cn=Directory Manager","password"
         //"dc=isep,dc=fr"
 
-        Archibook ldapCo = new archibook.LDAPclient(url, port, login, password, dc);
+        LDAPclient ldapCo = new LDAPclient(url, port, login, password, dc);
         ldapCo.startConnection();
 
         /*
