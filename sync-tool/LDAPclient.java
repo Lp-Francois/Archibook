@@ -1,5 +1,3 @@
-package archibook;
-
 import com.unboundid.ldap.sdk.*;
 
 public class LDAPclient {
