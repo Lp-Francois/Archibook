@@ -52,7 +52,6 @@
 			        	echo '<li class="list-group-item">'.$donnees['name'] . ' - ' . $donnees['mail'] . '</li>';
 			        }
 			        echo '</ul>';
-
 				}
 				else
 				{

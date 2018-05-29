@@ -16,23 +16,9 @@
     <div>
     	<h1>_ Archibook _</h1>
     	<hr>
-      <!--<span>Voici ArchiBook, c'est archi bien.</span>-->
     </div>
 
     <section>
-		<!--
-		<h2>Se connecter</h2>
-		<form action="/archibook/cloud/check.php" method="post">
-		  mail:<br>
-		  <input type="text" name="mail" value="">
-		  <br>
-		  Password:<br>
-		  <input type="password" name="password" value="">
-		  <br><br>
-		  <input type="submit" value="Submit">
-		</form>
-	-->
-
 		<h3>Se connecter</h3>
 		<form action="/archibook/cloud/check.php" method="post">
 		  <div class="form-group">

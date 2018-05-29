@@ -7,7 +7,7 @@ $data =
 [
 	1 => 
 	[
-		'name' => 'admin3',
+		'name' => 'admin4',
 		'password' => 'admi4n',
 		'mail' => 'admin4mail1@autre.com'
 	]
