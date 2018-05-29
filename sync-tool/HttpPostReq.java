@@ -19,12 +19,12 @@ public class HttpPostReq {
     public void send() {
        
 
-        String url = "88.177.205.85";
+        String url = "https://project-archibook.000webhostapp.com/";
 
         HttpClient httpClient = HttpClientBuilder.create().build(); //Use this instead
         //e34a2154179b291826b06d2c80db04b38899ac4208c564ab7cf6d481ad1585eb
         try {
-            HttpPost request = new HttpPost("http://"+url+"/archibook/cloud/api.php/"+ APIkey);
+            HttpPost request = new HttpPost(url+ "api.php/" + APIkey);
             //StringEntity params =new StringEntity("{\"1\":{\"name\":\"test10\",\"password\":\"5123\",\"mail\":\"ahb@hgvgh\"}}");
             System.out.println("{\"1\":{\"name\":\"test10\",\"password\":\"5123\",\"mail\":\"ahb@hgvgh\"}}");
             //JSONString = "{\"1\":{\"name\":\"test1540\",\"password\":\"5123\",\"mail\":\"ahb@hgvgh\"}}";
