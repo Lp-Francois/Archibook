@@ -44,7 +44,5 @@ Exemple of json datas :
 
 ## TODO
 
-* HTTPS
 * Cron
-* Gérer les différents hashs
 * Gérer le mot de passe du client (dé hashage ?)
