@@ -38,46 +38,49 @@ public class Main extends Application {
         grid.setVgap(8);
         grid.setHgap(8);
         
+        synConfig cf = new synConfig();
+        
         //APIkey
         Label apiLabel = new Label("API key");
         GridPane.setConstraints(apiLabel, 0, 0);
 
-        TextField apiInput = new TextField("");
+        TextField apiInput = new TextField(cf.getAPI());
         GridPane.setConstraints(apiInput, 1, 0);
 
         //url
         Label urlLabel = new Label("Server address - URL");
         GridPane.setConstraints(urlLabel, 0, 1);
 
-        TextField urlInput = new TextField("localhost.localdomain");
+        TextField urlInput = new TextField(cf.getURL());
         GridPane.setConstraints(urlInput, 1, 1);
 
         //port
         Label portLabel = new Label("Port");
         GridPane.setConstraints(portLabel, 0, 2);
-
-        TextField portInput = new TextField("1389");
+        
+        String port = Integer.toString(cf.getPORT());
+        TextField portInput = new TextField(port);
         GridPane.setConstraints(portInput, 1, 2);
 
         //dn
-        Label loginLabel = new Label("domain name");
+        Label loginLabel = new Label("DN of Directory Manager");
         GridPane.setConstraints(loginLabel, 0, 3);
 
-        TextField loginInput = new TextField("cn=Directory Manager");
+        TextField loginInput = new TextField(cf.getDN());
         GridPane.setConstraints(loginInput, 1, 3);
 
         //password
         Label passwordLabel = new Label("Password");
         GridPane.setConstraints(passwordLabel, 0, 4);
 
-        TextField passwordInput = new TextField();
+        TextField passwordInput = new TextField(cf.getPW());
         GridPane.setConstraints(passwordInput, 1, 4);
 
         //domain component dnCo
-        Label dcLabel = new Label("root ldap");
+        Label dcLabel = new Label("Root Search");
         GridPane.setConstraints(dcLabel, 0, 5);
 
-        TextField dcInput = new TextField("dc=isep,dc=fr");
+        TextField dcInput = new TextField(cf.getSEARCH());
         GridPane.setConstraints(dcInput, 1, 5);
 
         //button
@@ -102,10 +105,9 @@ public class Main extends Application {
         window.show();
     }
 
-    private void connect(String apiKey, String url, Integer port, String login, String password, String dc) throws LDAPException{
+    public static void connect(String apiKey, String url, Integer port, String login, String password, String dc) throws LDAPException{
         //"localhost.localdomain", 1389, "cn=Directory Manager","password"
         //"dc=isep,dc=fr"
-
         LDAPclient ldapCo = new LDAPclient(url, port, login, password, dc);
         String JSONString = ldapCo.startConnection();
         HttpPostReq post = new HttpPostReq(JSONString,apiKey);
