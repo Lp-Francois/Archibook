@@ -14,7 +14,8 @@
   </head>
   <body class="container mt-5 center">
     <div>
-    	<h1>Archibook</h1>
+    	<!--<h1>_ Archibook _</h1>-->
+        <img src="archibook_logo.png" width="300px" style="text-align: center; margin: auto; display: flex;">
     	<hr>
     </div>
 
@@ -65,10 +66,9 @@
 			
 		?>
     </section>
-
-    <div>
-		   
-    </div>
+	<br/>
+   	<a href="/"><button type="button" class="btn btn-light" style="border: solid 1px grey" >Deconne<span style="color: red">xion</span></button></a>
+   
   </body>
 </html>
 
