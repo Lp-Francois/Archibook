@@ -14,7 +14,8 @@
   </head>
   <body class="container mt-5 center">
     <div>
-    	<h1>_ Archibook _</h1>
+    	<!--<h1>_ Archibook _</h1>-->
+        <img src="archibook_logo.png" width="300px" style="text-align: center; margin: auto; display: flex;">
     	<hr>
     </div>
 
