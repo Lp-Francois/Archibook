@@ -44,12 +44,11 @@ public class LDAPclient {
                 
             for (SearchResultEntry entry : searchResult.getSearchEntries())
             {
-                //System.out.println("[+] in the for");
+                
                 String name = entry.getAttributeValue ("cn");
                 String mail = entry.getAttributeValue("mail");
-                //String phone = entry.getAttributeValue("telephoneNumber");
                 String mdp = entry.getAttributeValue("userpassword");
-                System.out.println(name + "\n" + mail + "\n" + mdp);
+                
                 
                 JSONString += "\"" + i + "\":{";
                 JSONString = JSONString + "\"name\":\"" + name + "\",\"password\":\"" + mdp + "\",\"mail\":\"" + mail + "\"},";

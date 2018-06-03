@@ -72,7 +72,6 @@ public class synConfig {
         ResourceBundle bundle = ResourceBundle.getBundle("archibook.properties.config");
         String milli = bundle.getString ("c.millisecs");
         Long millisecs = Long.parseLong(milli);
-         System.out.println(millisecs);
         return millisecs;
     }
     
