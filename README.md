@@ -7,7 +7,7 @@ Social Network using LDAP and synchronisation for schools
 -------------|--------------------|------------------------         
 |POST|    /API_key   |Confirm that you are a registered school. |
 
-*Contact ours folks to obtain an API key.*
+*Contact our folks to obtain an API key.*
 
 ## Database Structure
 
@@ -42,7 +42,3 @@ Exemple of json datas :
 }
 ```
 
-## TODO
-
-* Cron
-* Gérer le mot de passe du client (dé hashage ?)
