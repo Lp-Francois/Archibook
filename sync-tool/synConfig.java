@@ -54,13 +54,35 @@ public class synConfig {
         return rootSearch;
     }
     
+     public static Long getMINUTES(){
+        ResourceBundle bundle = ResourceBundle.getBundle("archibook.properties.config");
+        String minutes = bundle.getString ("c.minutes");
+        Long min = Long.parseLong(minutes);
+        return min;
+    }
+     
+     public static Long getSECONDES(){
+        ResourceBundle bundle = ResourceBundle.getBundle("archibook.properties.config");
+        String secondes = bundle.getString ("c.secondes");
+        Long secs = Long.parseLong(secondes);
+        return secs;
+    }
+     
+     public static Long getMILLISECS(){
+        ResourceBundle bundle = ResourceBundle.getBundle("archibook.properties.config");
+        String milli = bundle.getString ("c.millisecs");
+        Long millisecs = Long.parseLong(milli);
+         System.out.println(millisecs);
+        return millisecs;
+    }
+    
     public static void sync () throws LDAPException{
         //"localhost.localdomain", 1389, "cn=Directory Manager","password"
         //"dc=isep,dc=fr"
         //LDAPclient ldapCo = new LDAPclient(cf.getAPI(), cf.getURL(), cf.getPORT(), cf.getDN(), cf.getPW(), cf.getSEARCH());
         
         synConfig cf = new synConfig();
-        Main.connect(cf.getAPI(), cf.getURL(), cf.getPORT(), cf.getDN(), cf.getPW(), cf.getSEARCH());
+        LDAPclient.connect(cf.getAPI(), cf.getURL(), cf.getPORT(), cf.getDN(), cf.getPW(), cf.getSEARCH());
 
         
     }

@@ -28,7 +28,8 @@ public class cron  {
                 }
             }
         };
-        minuteur.schedule(tache, 0, 1000*60*5);
+        synConfig cf = new synConfig();
+        minuteur.schedule(tache, 0, cf.getMILLISECS()*cf.getSECONDES()*cf.getMINUTES());
    }
    
    public static void main(String[] args) {

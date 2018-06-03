@@ -77,6 +77,25 @@ public class LDAPclient {
         
 
     }
+    
+    public static void connect(String apiKey, String url, Integer port, String login, String password, String dc) throws LDAPException{
+        //"localhost.localdomain", 1389, "cn=Directory Manager","password"
+        //"dc=isep,dc=fr"
+        LDAPclient ldapCo = new LDAPclient(url, port, login, password, dc);
+        String JSONString = ldapCo.startConnection();
+        HttpPostReq post = new HttpPostReq(JSONString,apiKey);
+        post.send();
+        
+        
+
+        /*
+        System.out.println(url);
+        System.out.println(port);
+        System.out.println(login);
+        System.out.println(password);
+        System.out.println(dc);
+        */
+    }
 
 
 }
