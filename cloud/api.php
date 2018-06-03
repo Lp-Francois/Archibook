@@ -25,7 +25,8 @@ foreach ($input as $user) {
 	$name = $user['name'];
 	$mail = $user['mail'];
 	//$password = hash('sha256', $user['password']);
-	$password = substr($user['password'], 8); //remove {SHA256}
+	$password = substr($user['password'], 8); //remove {SHA256}*
+	$password =  bin2hex(base64_decode($password));
 
    $checkUni = $db->prepare('SELECT *
 	    FROM users WHERE mail = :mail' );
