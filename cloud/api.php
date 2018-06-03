@@ -24,7 +24,8 @@ include('bdd.php');
 foreach ($input as $user) {
 	$name = $user['name'];
 	$mail = $user['mail'];
-	$password = hash('sha256', $user['password']);
+	//$password = hash('sha256', $user['password']);
+	$password = $user['password'];
 
    $checkUni = $db->prepare('SELECT *
 	    FROM users WHERE mail = :mail' );
