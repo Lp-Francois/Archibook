@@ -21,6 +21,7 @@ https://project-archibook.000webhostapp.com/
 Add all the librairies to the java project.
 * With the *httpcomponents-client-4.5.5-bin*, you have to get all the jar files in the lib folder.
 * With Maven, get the org.eclipse.ecf:org.apache.httpcomponents.httpclient{version}
+* Add UnboundID LDAP SDK for java https://ldap.com/unboundid-ldap-sdk-for-java/
 
 ## Test
 
